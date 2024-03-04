@@ -1,0 +1,558 @@
+
+
+  /* Custom properties/variables  */
+:root {
+  --main-white: #f0f0f0;
+  --main-red: #be3144;
+  --main-blue: #45567d;
+  --main-gray: #303841;
+}
+
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* box-sizing and font sizing */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+
+  /* Set font size for easy rem calculations
+   * default document font size = 16px, 1rem = 16px, 100% = 16px
+   * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
+  */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+/* A few media query to set some font sizes at different screen sizes.
+ * This helps automate a bit of responsiveness.
+ * The trick is to use the rem unit for size values, margin and padding.
+ * Because rem is relative to the document font size
+ * when we scale up or down the font size on the document
+ * it will affect all properties using rem units for the values.
+*/
+
+/* I am using the em unit for breakpoints
+ * The calculation is the following
+ * screen size divided by browser base font size
+ * As an example: a breakpoint at 980px
+ * 980px / 16px = 61.25em
+*/
+
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+/* 980px / 16px = 61.25em */
+@media (max-width: 61.25em) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+  html {
+    font-size: 55%;
+  }
+}
+
+/* Base styles */
+
+body {
+  font-family: Open Sans;
+  font-size: 1.8rem; /* 18px */
+  font-weight: 400;
+  line-height: 1.4;
+  color: white;
+}
+
+h1,
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 70;
+  text-align: center;
+  color: white;
+
+}
+
+h1 {
+  font-size: 16rem;
+}
+
+h2 {
+  font-size: 4.2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* Línea divisoria */
+
+.divider {
+  width: 100%;
+  height: 10px;
+  background-color: #6D6A69; /* Color de la línea divisoria */
+  margin: 0px 0; /* Espaciado superior e inferior de la línea */
+}
+
+
+/* nav */
+
+.nav {
+  display: flex;
+  justify-content: space-between; /* Alinear elementos al principio y al final */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Alinear elementos verticalmente */
+  padding: 0 2rem; /* Agregar espacio alrededor del logo */
+}
+
+.logo a {
+  font-size: 2.2rem;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  width: 150%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  position: absolute;
+    top: 100%; /* Coloca el menú justo debajo del botón "Menu" */
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: gray;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 28.75em) {
+  .nav {
+    flex-direction: column; /* Cambiar a diseño de columna en pantallas pequeñas */
+    align-items: center; /* Alinear elementos horizontalmente */
+  }
+
+  .logo {
+    margin-bottom: 1rem; /* Espacio entre el logo y el menú en pantallas pequeñas */
+  }
+
+  .dropdown {
+    margin-bottom: 1rem; /* Espacio entre elementos del menú en pantallas pequeñas */
+  }
+}
+
+
+.nav-list {
+  display: flex;
+  margin-right: 2rem;
+}
+
+@media (max-width: 28.75em) {
+  .nav {
+    justify-content: center;
+  }
+
+  .nav-list {
+    margin: 0 2rem;
+  }
+}
+
+.nav-list a {
+  display: block;
+  font-size: 2.2rem;
+  padding: 1rem;
+}
+
+.nav-list a:hover {
+  background: #272626;
+}
+
+/* Estilo personalizado para el botón "Menu" */
+.nav button {
+  font-size: 2rem; /* Tamaño de fuente del botón */
+  color: white; /* Color del texto del botón */
+  background-color: black; /* Color de fondo del botón */
+  border: none; /* Eliminar borde del botón */
+  padding: 10px 20px; /* Espaciado interno del botón */
+  border-radius: 5px; /* Radio de borde del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+}
+
+/* Estilo cuando el botón "Menu" es hover */
+.nav button:hover {
+  background-color: black; /* Cambiar el color de fondo cuando se pasa el mouse */
+}
+
+
+/* Welcome section */
+
+.welcome-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  background-color: #26282b;
+  background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
+}
+
+
+.images-container {
+  display: flex;
+  flex-direction: row;
+  margin-right: 70px;
+  margin-left: 0px;
+}
+
+.images-container img {
+  width: 130px;
+  margin-right: 20px;
+  margin-left: 10px;
+  height: 250px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.text-container h1 {
+  font-size: 7rem;
+  font-weight: 200;
+  font-style: Playfair Display;
+  color: white;
+  margin: 0; /* Eliminar el margen predeterminado */
+}
+
+.text-container p {
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: Open Sans;
+  color: white;
+  margin: 10; /* Eliminar el margen predeterminado */
+  }
+
+
+/* Projects section */
+
+.projects-section {
+  width: 100%;
+  height: 85vh;
+  text-align: center;
+  padding: 8rem 5rem;
+  background: #26282b;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-section-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-section h2 {
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: Open sans;
+  color: #79B0F1;
+  margin: 0;
+  margin-bottom: 3rem;
+}
+
+.projects-section h3 {
+  font-size: 3rem;
+  font-weight: 200;
+  font-style: Bebas Neue;
+  color: #255185;
+  margin: 0;
+  margin-bottom: 3rem;
+}
+
+.projects-section p {
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: Roboto;
+  color: #79B0F1;
+  margin: 10;
+  margin-bottom: 2rem;
+  }
+
+  .projects-section p2 {
+    text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 200;
+  font-style: Bebas Neue;
+  color: #255185;
+  margin: 10;
+  margin-bottom: 2rem;
+  }
+
+.precios {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.precios:first-child {
+  margin-right: 30px; /* Ajusta el valor según tus preferencias */
+}
+
+.precios:last-child {
+  margin-left: 30px; /* Ajusta el valor según tus preferencias */
+}
+
+@media (max-width: 767px) {
+  .projects-section-header {
+    flex-direction: column;
+    align-items: flex-start; /* Alinear los elementos a la izquierda */
+  }
+  }
+
+.imagen {
+  display: flex;
+  flex-direction: row;
+}
+
+.imagen img {
+  width: 300px;
+  margin-left: 50px;
+  margin-right: 10px;
+  height: 200px;
+
+}
+
+/* "Automagic" image grid using no media queries */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 4rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 30.625em) {
+  .projects-section {
+    padding: 6rem 1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project {
+  background: #26282b;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+.code {
+  color: var(--main-gray);
+  transition: color 0.3s ease-out;
+}
+
+.project:hover .code {
+  color: #ff7f50;
+}
+
+.project-image {
+  height: calc(100% - 6.8rem);
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-title {
+  font-size: 2rem;
+  padding: 2rem 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+}
+
+.btn-show-all {
+  font-size: 2rem;
+  background: var(--main-gray);
+  transition: background 0.3s ease-out;
+}
+
+.btn-show-all:hover {
+  background: var(--main-red);
+}
+
+.btn-show-all:hover > i {
+  transform: translateX(2px);
+}
+
+.btn-show-all > i {
+  margin-left: 10px;
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+
+/* Videos section */
+
+.dudas-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 80vh;
+  padding: 0 2rem;
+  background: #26282b;
+  color: black;
+  }
+
+  .dudas-section-header > h2 {
+  font-size: 3rem;
+}
+
+@media (max-width: 28.75em) {
+  .dudas-section-header > h2 {
+    font-size: 4rem;
+  }
+}
+
+.dudas-section-header > p {
+  font-style: Open sans;
+}
+
+.videos {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 980px;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+/* Contact section */
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50vh;
+  padding: 0 2rem;
+  background: #26282b;
+}
+
+.contact-section-header > h2 {
+  font-size: 3rem;
+}
+
+@media (max-width: 28.75em) {
+  .contact-section-header > h2 {
+    font-size: 4rem;
+  }
+}
+
+.contact-section-header > p {
+  font-style: Open sans;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 980px;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.contact-details {
+  font-size: 2.4rem;
+  text-shadow: 2px 2px 1px #1f1f1f;
+  transition: transform 0.3s ease-out;
+}
+
+.contact-details:hover {
+  transform: translateY(8px);
+}
+
+/* Footer */
+
+footer {
+  font-weight: 300;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+  background: #212429;
+  border-top: 4px solid var(--main-red);
+}
+
+footer > p {
+  margin: 2rem;
+}
+
+footer i {
+  vertical-align: middle;
+}
+
+@media (max-width: 28.75em) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
